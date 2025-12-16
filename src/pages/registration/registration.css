@@ -1,0 +1,24 @@
+.height{
+    height: 100vh;
+}
+.color{
+    color: #034d83;
+    font-weight: 500;
+}
+.btn_bg{
+    background-color: #034d83 !important;
+}
+.bg-image{
+    background-image: url("../../assets/registrion.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.blur{
+    background: rgba(0, 0, 0, 0.25); /* semi-transparent */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
+    border-radius: 16px;
+    padding: 2rem;
+    color: #fff;
+}
