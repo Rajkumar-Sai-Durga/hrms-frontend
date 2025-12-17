@@ -27,6 +27,7 @@ const Login = () => {
                 toast.success(response.data.message);
                 localStorage.setItem("userInfo", JSON.stringify(response.data.userInfo))
                 localStorage.setItem("accessToken", response.data.accessToken)
+                navigate('/dashboard')
             }else{
                 toast.success(response.data.message);
             }

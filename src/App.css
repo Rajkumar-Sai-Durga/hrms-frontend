@@ -1,0 +1,11 @@
+.color{
+    color: #034d83;
+    font-weight: 500;
+}
+.btn_bg, .bg-color{
+    background-color: #034d83 !important;
+}
+.text-white{
+    color: white;
+    font-weight: 500;
+}
