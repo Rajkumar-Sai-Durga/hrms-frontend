@@ -127,6 +127,7 @@ const Registration = () => {
               <input type="checkbox" className="form-check-input" id="exampleCheck1" onChange={(e)=>setCheck(e.target.checked)}/>
               <label className="form-check-label" htmlFor="exampleCheck1">I agree to all the <span className="text-primary">Terms, Privacy policy.</span></label>
             </div>
+            {check? <p></p> :<p className="text-danger">Agree to Terms, Privacy policy</p>}
             <button type="submit" className="btn btn-primary btn_bg container-fluid d-flex justify-content-center align-items-center" disabled={!check && !load} >
               {load? <Loader></Loader> : "Register"}
             </button>

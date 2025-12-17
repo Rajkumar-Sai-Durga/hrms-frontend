@@ -5,11 +5,12 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import Loader from "../../components/loader/Loader";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     let [load, setLoad] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [lock, setLock] = useState<boolean>(true)
 
     interface loginDto{
         email:string,
@@ -23,6 +24,10 @@ const Login = () => {
             const response = await axios.post("http://localhost:8080/api/employee/login", formValues)
             console.log(response)
             if(response.data.accessToken.length){
+                toast.success(response.data.message);
+                localStorage.setItem("userInfo", JSON.stringify(response.data.userInfo))
+                localStorage.setItem("accessToken", response.data.accessToken)
+            }else{
                 toast.success(response.data.message);
             }
         } catch (error) {
@@ -52,20 +57,23 @@ const Login = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputPassword1" className="form-label color">Password</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1" {...register("password",{
-                                required:{ value: true, message: "Password must required."},
-                                pattern:{ value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, message: "Invalid password"}
-                            })}/>
+                            <div className='password-container'>
+                                <input type={lock? "password": "text"} className="form-control" id="exampleInputPassword1" {...register("password",{
+                                    required:{ value: true, message: "Password must required."},
+                                    pattern:{ value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, message: "Invalid password"}
+                                })}/>
+                                {lock? <i className="bi bi-shield-lock-fill child" onClick={()=> setLock(false)}></i> : <i className="bi bi-shield-lock child" onClick={()=> setLock(true)}></i>}
+                            </div>
                             {errors.password?.message && (<p className='text-danger'>{errors.password?.message}</p>)}
                             <p className='text-secondary'>Eg. Password@1234</p>
                         </div>
                         <div className="d-flex align-items-center justify-content-between">
                             <div className="mb-3 form-check">
                                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                                <label className="form-check-label" htmlFor="exampleCheck1">Remenber me</label>
+                                <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
                             </div>
                             <div>
-                                <p className='btn btn-link color'>Forget password?</p>
+                                <Link to="/forget-password" className='color'>Forget password?</Link>
                             </div>
                         </div>
                         <button type="submit" className="btn btn-primary btn_bg container-fluid d-flex justify-content-center align-items-center" disabled={load}>
