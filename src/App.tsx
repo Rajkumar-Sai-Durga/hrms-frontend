@@ -13,6 +13,7 @@ import EmployeeManagement from './pages/employeeManage/EmployeeManagement';
 import Home from './pages/Home/Home';
 import Leaves from './pages/leaves/Leaves';
 import { Issues } from './pages/Issues/Issues';
+import Profiles from './pages/profile/Profiles';
 
 function App() {
 
@@ -30,7 +31,13 @@ function App() {
           <Route path='employees' element={<EmployeeManagement></EmployeeManagement>}/>
           <Route path='leaves' element={<Leaves></Leaves>}/>
           <Route path='issues' element={<Issues></Issues>}/>
+
         </Route>
+
+          <Route path='/profile/:employeeId' element={<Profiles></Profiles>}>
+            <Route index element={<Navigate to="home"/>}/>
+            {/* <Route path='home' element={}/> */}
+          </Route>
 
       </Routes>
       <ToastContainer></ToastContainer>

@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const EmployeeManagement = () => {
   const [employees, setEmployees] = useState<any>()
   console.log(localStorage.getItem("accessToken"))
+  const navigate = useNavigate();
 
   const apiCall = async()=>{
     try {
@@ -26,8 +28,7 @@ const EmployeeManagement = () => {
   
 
   const employeeInfo = (employeeId: string)=>{
-    console.log(employeeId);
-    
+    navigate("/profile/"+employeeId)
   }
 
   return (

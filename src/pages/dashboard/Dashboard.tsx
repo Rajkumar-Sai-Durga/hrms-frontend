@@ -1,9 +1,24 @@
 
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Logo from "../../assets/WhatsApp Image 2025-12-14 at 17.21.26_8738a792 1.png"
 import "./dashboard.css"
+import { useState } from "react";
+import Confirmation from "../../components/confirmation-model/Confirmation";
 
 const Dashboard = () => {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate()
+  const userStr = localStorage.getItem("userInfo");
+  const user = userStr ? JSON.parse(userStr) : null;
+  const name = user?.firstName;
+  const role = user?.role;
+
+  const handleDelete = () => {
+    localStorage.clear();
+    navigate("/")
+    setShowModal(false);
+  };
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -33,8 +48,8 @@ const Dashboard = () => {
                 alt="profile"
               />
               <div className="d-flex flex-column align-items-start justify-content-center">
-                <h6 className="mb-0">KRIS Admin</h6>
-                <small className="text-muted">Admin</small>
+                <h6 className="mb-0">{name}</h6>
+                <small className="text-muted">{role}</small>
               </div>
             </div>
 
@@ -74,16 +89,22 @@ const Dashboard = () => {
               </ul>
               <ul className="nav nav-pills flex-column gap-2">
                 <li className="nav-item mt-2">
-                  <button className="btn btn-danger w-100 text-white">
+                  <button className="btn btn-danger w-100 text-white" onClick={() => setShowModal(true)}>
                     Logout
                   </button>
                 </li>
               </ul>
-
             </div>
 
           </div>
         </nav>
+        <Confirmation
+          show={showModal}
+          title="Logout"
+          message="Are you sure you want to logout?"
+          onConfirm={handleDelete}
+          onCancel={() => setShowModal(false)}
+        />
 
         {/* Main Content */}
         <div className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
