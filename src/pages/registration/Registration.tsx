@@ -18,7 +18,8 @@ const Registration = () => {
     username: string,
     email: string,
     password: string
-    confirmPass: string
+    confirmPass: string,
+    gender: string
   }
   const {register, handleSubmit, formState: {errors}, watch} = useForm<formValues>()
   const password = watch("password");
@@ -30,15 +31,16 @@ const Registration = () => {
       username: formValues.username,
       email: formValues.email,
       password: formValues.password,
-      role: "EMPLOYEE"
+      role: "EMPLOYEE",
+      gender: formValues.gender
     }
     ivokeApi(obj)
+    
   }
 
   const ivokeApi = async (obj: any)=>{
     setLoad(true)
     try {
-      console.log(check, load);
       
       let response = await axios.post("http://localhost:8080/api/employee/register", obj);
       console.log(response);
@@ -122,6 +124,15 @@ const Registration = () => {
                 })}/>
                 {errors.confirmPass?.message && (<p className="text-danger">{errors.confirmPass?.message}</p>)}
               </div>
+            </div>
+            <div>
+              <div className="d-flex gap-3 align-items-center">
+                <label className="form-label color">Gender</label>
+                <label><input type="radio" value="Male" className="form-ccontrol" {...register("gender",{required: "Gender is reqiured"})}/>Male</label>
+                <label><input type="radio" value="Female" className="form-ccontrol" {...register("gender")}/>Female</label>
+                <label><input type="radio" value="Others" className="form-ccontrol" {...register("gender")}/>Others</label>
+              </div>
+              <p>{errors.gender?.message && (<p className="text-danger">{errors.gender?.message}</p>)}</p>
             </div>
             <div className="mb-3 form-check">
               <input type="checkbox" className="form-check-input" id="exampleCheck1" onChange={(e)=>setCheck(e.target.checked)}/>

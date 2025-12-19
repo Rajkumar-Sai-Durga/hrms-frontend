@@ -1,6 +1,7 @@
 
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import Logo from "../../assets/WhatsApp Image 2025-12-14 at 17.21.26_8738a792 1.png"
+import profile from "../../assets/profile.jpeg"
 import "./dashboard.css"
 import { useState } from "react";
 import Confirmation from "../../components/confirmation-model/Confirmation";
@@ -32,24 +33,27 @@ const Dashboard = () => {
             
             {/* logo */}
             <div className="mb-4 logo d-flex justify-content-start align-items-center">
-              <img
-                src={Logo}
-                alt="logo"
-              />
+              <Link to="/dashboard">
+                <img
+                  src={Logo}
+                  alt="logo"
+                />
+              </Link>
+              
             </div>
             
 
             {/* Profile */}
-            <div className="text-center mb-4 d-flex justify-content-around">
+            <div className="text-center mb-4 d-flex gap-3">
               <img
-                src="https://i.pravatar.cc/80"
+                src={profile}
                 className="rounded-circle mb-2"
                 width="70"
                 alt="profile"
               />
               <div className="d-flex flex-column align-items-start justify-content-center">
-                <h6 className="mb-0">{name}</h6>
-                <small className="text-muted">{role}</small>
+                <h3 className="mb-0">{name}</h3>
+                <p className="text-secondary">{role}</p>
               </div>
             </div>
 
@@ -118,7 +122,6 @@ const Dashboard = () => {
             >
               ☰
             </button>
-            <h5 className="ms-3 mb-0">Dashboard</h5>
           </nav>
 
           <div className="pt-4">

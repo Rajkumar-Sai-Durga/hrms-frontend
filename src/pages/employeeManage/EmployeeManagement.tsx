@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 
 const EmployeeManagement = () => {
   const [employees, setEmployees] = useState<any>()
-  console.log(localStorage.getItem("accessToken"))
   const navigate = useNavigate();
 
   const apiCall = async()=>{
@@ -28,7 +27,7 @@ const EmployeeManagement = () => {
   
 
   const employeeInfo = (employeeId: string)=>{
-    navigate("/profile/"+employeeId)
+    navigate("/dashboard/profile/"+employeeId)
   }
 
   return (
@@ -42,6 +41,7 @@ const EmployeeManagement = () => {
             <th scope="col">DEPARTMENT</th>
             <th scope="col">JOB TITLE</th>
             <th scope="col">CATEGORY</th>
+            <th scope="col">GENEDER</th>
             <th scope="col">ACTIONS</th>
           </tr>
         </thead>
@@ -53,6 +53,7 @@ const EmployeeManagement = () => {
               <td>{employee.department}</td>
               <td>{employee.jobTitle}</td>
               <td>{employee.category}</td>
+              <td>{employee.geneder}</td>
               <td onClick={()=>employeeInfo(employee.employee.employeeId)}><i className="bi bi-eye-fill"></i></td>
           </tr>
           ))}

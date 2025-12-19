@@ -22,7 +22,6 @@ const Login = () => {
         setLoad(true)
         try {
             const response = await axios.post("http://localhost:8080/api/employee/login", formValues)
-            console.log(response)
             if(response.data.accessToken.length){
                 toast.success(response.data.message);
                 localStorage.setItem("userInfo", JSON.stringify(response.data.userInfo))

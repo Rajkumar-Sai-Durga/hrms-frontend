@@ -13,7 +13,10 @@ import EmployeeManagement from './pages/employeeManage/EmployeeManagement';
 import Home from './pages/Home/Home';
 import Leaves from './pages/leaves/Leaves';
 import { Issues } from './pages/Issues/Issues';
-import Profiles from './pages/profile/Profiles';
+import Professional from './pages/profile-pages/Professional';
+import Educational from './pages/profile-pages/Educational';
+import BankDetails from './pages/profile-pages/BankDetails';
+import ProfileDashboard from './pages/profile-dashboard/ProfileDashboard';
 
 function App() {
 
@@ -32,12 +35,14 @@ function App() {
           <Route path='leaves' element={<Leaves></Leaves>}/>
           <Route path='issues' element={<Issues></Issues>}/>
 
+          <Route path='profile/:employeeId' element={<ProfileDashboard></ProfileDashboard>}>
+            <Route index element={<Navigate to="pro"/>}/>
+            <Route path='pro' element={<Professional></Professional>}/>
+            <Route path='qualification' element={<Educational></Educational>}/>
+            <Route path='financial' element={<BankDetails></BankDetails>}/>
+          </Route>
         </Route>
 
-          <Route path='/profile/:employeeId' element={<Profiles></Profiles>}>
-            <Route index element={<Navigate to="home"/>}/>
-            {/* <Route path='home' element={}/> */}
-          </Route>
 
       </Routes>
       <ToastContainer></ToastContainer>
