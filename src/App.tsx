@@ -17,6 +17,8 @@ import Professional from './pages/profile-pages/Professional';
 import Educational from './pages/profile-pages/Educational';
 import BankDetails from './pages/profile-pages/BankDetails';
 import ProfileDashboard from './pages/profile-dashboard/ProfileDashboard';
+import LeaveConfirmation from './components/confirmation-model/LeaveConfirmation';
+import RecallConfirmation from './components/confirmation-model/RecallConfirmation';
 
 function App() {
 
@@ -34,6 +36,8 @@ function App() {
           <Route path='employees' element={<EmployeeManagement></EmployeeManagement>}/>
           <Route path='leaves' element={<Leaves></Leaves>}/>
           <Route path='issues' element={<Issues></Issues>}/>
+          <Route path='leaves/confirm' element={<LeaveConfirmation></LeaveConfirmation>}/>
+          <Route path='leaves/recall' element={<RecallConfirmation></RecallConfirmation>}/>
 
           <Route path='profile/:employeeId' element={<ProfileDashboard></ProfileDashboard>}>
             <Route index element={<Navigate to="pro"/>}/>

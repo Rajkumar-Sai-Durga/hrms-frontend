@@ -32,7 +32,7 @@ const EmployeeManagement = () => {
 
   return (
     <div>
-      <h1>Employee Management</h1>
+      <h1><i className="bi bi-people-fill icon"></i> Employee Management</h1>
       <table className="table table-hover">
         <thead>
           <tr>
