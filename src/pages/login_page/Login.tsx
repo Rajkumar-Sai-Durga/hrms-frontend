@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { useState } from 'react';
 import Loader from "../../components/loader/Loader";
 import { Link, useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
     let [load, setLoad] = useState<boolean>(false);
@@ -26,7 +27,12 @@ const Login = () => {
                 toast.success(response.data.message);
                 localStorage.setItem("userInfo", JSON.stringify(response.data.userInfo))
                 localStorage.setItem("accessToken", response.data.accessToken)
-                navigate('/dashboard')
+                let decode = jwtDecode(response.data.accessToken);
+                if(decode.role == "ROLE_ADMIN"){
+                    navigate('/dashboard')
+                }else{
+                    navigate('/employee-dashboard')
+                }
             }else{
                 toast.success(response.data.message);
             }

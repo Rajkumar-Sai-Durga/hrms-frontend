@@ -9,3 +9,13 @@
     color: white;
     font-weight: 500;
 }
+.light-bg{
+    background-color: rgb(227,237,249);
+}
+.bg-whilte{
+    background-color: white;
+}
+.navbar-nav .nav-link.active{
+    border-bottom: 2px solid #034d83;
+    padding-bottom: 4px;
+}

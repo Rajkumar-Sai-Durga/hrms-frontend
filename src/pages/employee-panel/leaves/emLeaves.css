@@ -1,0 +1,18 @@
+.day{
+    padding: 10px 24px;
+}
+.apply{
+    border-radius: 25px;
+    padding: 7px 22px;
+}
+.height{
+    height: 100vh;
+}
+.hover{
+
+    font-size: 20px;
+}
+.hover:hover{
+    cursor: pointer;
+    color: red;
+}

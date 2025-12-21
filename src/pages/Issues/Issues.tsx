@@ -42,6 +42,7 @@ export const Issues = () => {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`
         }
       })
+      console.log(response);
       window.location.reload();
     } catch (error) {
       toast.error("server not responding")

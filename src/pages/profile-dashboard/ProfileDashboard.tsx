@@ -1,15 +1,24 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import logo from "../../assets/WhatsApp Image 2025-12-14 at 17.21.26_8738a792 1.png"
+
+const ProfileHeader = () => {
+  const location = useLocation();
+  const isEmployeeRoute = location.pathname.startsWith("/employee-dashboard");
+  if (isEmployeeRoute) return <></>;
+  return (
+    <div className="d-flex align-items-center">
+      <img src={logo} alt="logo" />
+      <h2 className="ms-3 mb-0 color fw-2">Profile</h2>
+    </div>
+  );
+}
 
 const ProfileDashboard = () => {
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="d-flex justify-content-between px-3 py-2">
-            <div className="d-flex align-items-center">
-                <img src={logo} alt="logo" />
-                <h2 className="ms-3 mb-0 color fw-2">Profile</h2>
-            </div>
+            <ProfileHeader />
         </div>
         {/* Sidebar */}
         <nav

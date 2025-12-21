@@ -11,6 +11,7 @@ import ResetPassword from './pages/forget_password/ResetPassword';
 import Dashboard from './pages/dashboard/Dashboard';
 import EmployeeManagement from './pages/employeeManage/EmployeeManagement';
 import Home from './pages/Home/Home';
+import EmHome from "./pages/employee-panel/home/EmHome"
 import Leaves from './pages/leaves/Leaves';
 import { Issues } from './pages/Issues/Issues';
 import Professional from './pages/profile-pages/Professional';
@@ -19,6 +20,10 @@ import BankDetails from './pages/profile-pages/BankDetails';
 import ProfileDashboard from './pages/profile-dashboard/ProfileDashboard';
 import LeaveConfirmation from './components/confirmation-model/LeaveConfirmation';
 import RecallConfirmation from './components/confirmation-model/RecallConfirmation';
+import EmployeeDashboard from './pages/Employee-dashboard/EmployeeDashboard';
+import EmLeaves from './pages/employee-panel/leaves/EmLeaves';
+import EmIssues from './pages/employee-panel/issues/EmIssues';
+import EditLeave from './pages/employee-panel/leaves/EditLeave';
 
 function App() {
 
@@ -47,7 +52,19 @@ function App() {
           </Route>
         </Route>
 
-
+        <Route path='/employee-dashboard' element={<EmployeeDashboard></EmployeeDashboard>}>
+          <Route index element={<Navigate to="home" />} />
+          <Route path='home' element={<EmHome></EmHome>}/>
+          <Route path='leaves' element={<EmLeaves></EmLeaves>}/>
+          <Route path='leaves/edit' element={<EditLeave></EditLeave>}/>
+          <Route path='issues' element={<EmIssues></EmIssues>}/>
+          <Route path='profile/:employeeId' element={<ProfileDashboard></ProfileDashboard>}>
+            <Route index element={<Navigate to="pro"/>}/>
+            <Route path='pro' element={<Professional></Professional>}/>
+            <Route path='qualification' element={<Educational></Educational>}/>
+            <Route path='financial' element={<BankDetails></BankDetails>}/>
+          </Route>
+        </Route>
       </Routes>
       <ToastContainer></ToastContainer>
     </>
